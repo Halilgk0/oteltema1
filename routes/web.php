@@ -46,7 +46,7 @@ Route::middleware(['auth'])->group(function () {
 // Admin Login Routes (Public)
 Route::get('/admin', [AdminController::class, 'showLogin'])->name('admin.login');
 Route::get('/admin/login', [AdminController::class, 'showLogin'])->name('admin.login');
-Route::post('/admin/login', [AdminController::class, 'login'])->name('admin.login.post');
+Route::post('/admin/login', [AdminController::class, 'login']);
 
 // Admin Protected Routes
 Route::middleware(['admin'])->prefix('admin')->name('admin.')->group(function () {
