@@ -44,7 +44,7 @@ Route::middleware(['auth'])->group(function () {
 });
 
 // Admin Login Routes (Public)
-Route::get('/admin', [AdminController::class, 'showLogin'])->name('admin.login');
+Route::get('/admin', [AdminController::class, 'showLogin'])->name('admin.index');
 Route::get('/admin/login', [AdminController::class, 'showLogin'])->name('admin.login');
 Route::post('/admin/login', [AdminController::class, 'login']);
 
