@@ -1,0 +1,2 @@
+                <a href="{{ route('rooms') }}" class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Odalar</a>
+                <a href="{{ route('contact') }}" class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">İletişim</a> 
