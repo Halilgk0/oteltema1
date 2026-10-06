@@ -1,65 +1,132 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
+# 🌿 Luxury Hotel — Yağmur Ormanı Temalı Otel Sitesi
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+Laravel ile yazılmış bir otel tanıtım ve rezervasyon sitesi. Tasarım, sisli bir yağmur ormanında tutulmuş eski bir **keşif günlüğü** fikrine dayanıyor: kâğıt dokusu, daktilo yazıları, damgalar, bantlanmış fotoğraflar, sarkan sarmaşıklar ve hareketli sis katmanları.
 
-## About Laravel
+**Canlı demo:** https://oteltema1.vercel.app
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+> Sitedeki tüm oda, kullanıcı ve rezervasyon verileri örnek (sahte) verilerdir.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+---
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+## Özellikler
 
-## Learning Laravel
+**Ziyaretçiler için**
+- Oda tipleri, oda detayları, etkinlikler ve iletişim sayfaları
+- Ana sayfada kaydırmalı oda vitrini (Swiper)
+- Telefona uyumlu tasarım ve açılır mobil menü
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+**Üyeler için**
+- Kayıt olma, giriş yapma ("beni hatırla" seçeneği ile)
+- Rezervasyon: takvimden tarih seçimi (Flatpickr), kişi sayısı seçici, form doğrulama ve gece sayısına göre fiyat hesabı
+- Profil sayfası, "Rezervasyonlarım" listesi ve yaklaşan rezervasyonları iptal etme
+- Profilden şifre değiştirme; şifre değişince diğer cihazlardaki oturumlar kapanır
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 2000 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+**Yönetim paneli**
+- Genel bakış: oda, rezervasyon ve bekleyen rezervasyon sayıları
+- Oda tipi ve oda ekleme, düzenleme, silme (görsel ve olanak seçimiyle)
+- Tüm rezervasyonların listesi
 
-## Laravel Sponsors
+**Güvenlik**
+- Yönetim paneline yalnızca admin hesabı erişebilir. Diğer herkes `/admin` adreslerinde 404 görür, yani panelin varlığı bile anlaşılmaz.
+- Aynı e-posta için 5 hatalı girişten sonra 1 dakikalık kilit, ayrıca giriş, kayıt, rezervasyon ve şifre işlemlerinde istek sınırı
+- Kullanıcılar yalnızca kendi rezervasyonlarını görebilir ve iptal edebilir
+- Formlardan admin yetkisi verilemez (`is_admin` toplu atamaya kapalı)
+- Tıklama tuzağı (clickjacking) ve MIME sniffing'e karşı güvenlik başlıkları, CSRF koruması
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+## Teknolojiler
 
-### Premium Partners
+| Katman | Kullanılan |
+|---|---|
+| Sunucu | PHP 8.2+ (8.4 ile test edildi), Laravel 9 |
+| Veritabanı | MySQL (yerel), SQLite (Vercel demosu) |
+| Arayüz | Blade, Tailwind CSS (CDN), Alpine.js |
+| Bileşenler | Swiper, Flatpickr, Font Awesome |
+| Yayın | Vercel + [vercel-php](https://github.com/vercel-community/php) runtime |
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
-- **[Lendio](https://lendio.com)**
+## Yerel Kurulum
 
-## Contributing
+Gerekenler: PHP 8.2+, Composer ve MySQL (WampServer, XAMPP vb.).
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+```bash
+git clone https://github.com/Halilgk0/oteltema1.git
+cd oteltema1
+composer install
 
-## Code of Conduct
+cp .env.example .env        # Windows: copy .env.example .env
+php artisan key:generate
+```
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+MySQL'de `oteltema` adında boş bir veritabanı oluşturun. Farklı bir ad veya şifre kullanıyorsanız `.env` içindeki `DB_*` satırlarını güncelleyin. Ardından:
 
-## Security Vulnerabilities
+```bash
+php artisan migrate --seed   # tabloları kurar ve örnek verileri ekler
+php artisan storage:link     # yönetim panelinden yüklenen görseller için
+php artisan serve
+```
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+Site http://127.0.0.1:8000 adresinde açılır. Aynı ağdaki bir telefondan denemek için bilgisayarın yerel IP'sini verin:
 
-## License
+```bash
+php artisan serve --host=192.168.1.105 --port=8000
+```
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
-php artisan serve --host=192.168.1.101 --port=8000
+### Hesaplar
+
+| Hesap | E-posta | Şifre |
+|---|---|---|
+| Yönetici | `admin@admin.com` | `.env` içindeki `ADMIN_PASSWORD`; boşsa `admin123` |
+| Örnek misafirler | `elif.yildiz@example.com` vb. | Rastgele. Denemek için yeni bir hesap açın. |
+
+Yönetim paneline ayrı bir giriş sayfası yoktur. Admin hesabıyla normal **Giriş Yap** sayfasından girildiğinde doğrudan panele yönlendirilir. Panele menüdeki **Yönetim Paneli** bağlantısından da ulaşılabilir.
+
+> `admin123` yalnızca yerel geliştirme içindir ve bu repoda herkes tarafından görülebilir. Herkese açık bir sunucuda mutlaka `ADMIN_PASSWORD` tanımlayın.
+
+## Vercel'de Yayın
+
+Proje Vercel'e hazır olarak gelir. GitHub reposunu Vercel'e bağlamak yeterlidir; `main` dalına yapılan her push otomatik olarak yayına alınır.
+
+**Nasıl çalışır?**
+- `vercel.json` tüm istekleri `api/index.php` dosyasına yönlendirir. Bu dosya Laravel'i PHP 8.4 runtime'ı ile çalıştırır.
+- Vercel'de yalnızca geçici klasör (`/tmp`) yazılabilir. `api/index.php`, önbellekleri, derlenmiş görünümleri ve veritabanını oraya yönlendirir.
+- Demo veritabanı geçici bir SQLite dosyasıdır. Sunucunun ilk isteğinde tablolar kurulur ve örnek veriler eklenir (`DB_AUTO_SETUP`).
+
+**Vercel'de tanımlanması gereken ortam değişkenleri**
+
+| Değişken | Açıklama |
+|---|---|
+| `APP_KEY` | `php artisan key:generate --show` ile üretilen anahtar |
+| `ADMIN_PASSWORD` | Canlı sitedeki admin şifresi |
+| `APP_NAME` | Sitede görünen otel adı, örn. `Luxury Hotel` |
+
+Geri kalan ayarların varsayılanları `api/index.php` içindedir ve Vercel'de aynı adla bir değişken tanımlanarak değiştirilebilir.
+
+**Demo sınırlamaları**
+- Veritabanı kalıcı değildir. Site bir süre ziyaret edilmezse veya Vercel yeni bir sunucu başlatırsa yeni kayıtlar, rezervasyonlar ve panelde yapılan değişiklikler silinir ve örnek veriler geri gelir. Admin şifresini değiştirmek için profil sayfası yerine Vercel'deki `ADMIN_PASSWORD` değişkenini kullanın.
+- Yönetim panelinden yüklenen oda görselleri Vercel'de saklanamaz ve görüntülenmez. Örnek odaların görselleri dış bağlantı olduğu için sorunsuz görünür. Görsel yükleme için Vercel Blob veya S3 gibi bir depolama servisi gerekir.
+
+**Kalıcı veritabanına geçmek için:** Ücretsiz bir MySQL veya PostgreSQL veritabanı açın (örneğin Vercel panelinden Neon Postgres). Ardından Vercel'de `DB_CONNECTION` (`mysql` veya `pgsql`) ve `DATABASE_URL` değişkenlerini tanımlayın. İlk istekte tablolar otomatik kurulur; veritabanı boşsa örnek veriler de eklenir.
+
+## Proje Yapısı
+
+```
+api/index.php                 Vercel giriş noktası
+app/Http/Controllers/         Site, üyelik, rezervasyon ve yönetim controller'ları
+app/Http/Middleware/          AdminMiddleware (404 ile gizleme), SecurityHeaders
+app/Providers/                İstek sınırları ve demo veritabanı kurulumu
+database/migrations, seeders  Tablolar ve örnek veriler
+resources/views/              Blade şablonları
+  layouts/app.blade.php         Ana sayfa düzeni, menü ve alt bilgi
+  partials/                     Tema stilleri ve dekoratif parçalar (sarmaşık, sis, ...)
+  admin/                        Yönetim paneli
+routes/web.php                Tüm adresler
+vercel.json                   Vercel ayarları
+```
+
+## Yayına Almadan Önce
+
+Kendi sunucunuzda veya alan adınızda yayınlayacaksanız:
+
+- `.env` içinde `APP_ENV=production` ve `APP_DEBUG=false` olmalı.
+- Site HTTPS üzerinden sunulmalı ve `SESSION_SECURE_COOKIE=true` yapılmalı.
+- Veritabanı için şifresiz `root` yerine ayrı, şifreli bir kullanıcı kullanılmalı.
+- Sunucunun kök klasörü `public/` olmalı. `.env` dosyası asla repoya eklenmemeli; `.gitignore` bunu zaten engelliyor.
