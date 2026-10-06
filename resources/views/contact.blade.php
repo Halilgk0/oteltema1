@@ -116,7 +116,7 @@
         </div>
 
         <!-- Sosyal -->
-        <div class="mt-14 text-center" data-aos="fade-up">
+        <div class="mt-14 text-center">
             <span class="type-stamp text-xs text-[var(--stone)]">— Follow The Trail —</span>
             <div class="flex items-center justify-center gap-4 mt-5">
                 <a href="#" class="w-12 h-12 rounded-full border-2 border-dashed border-[var(--ink)] flex items-center justify-center text-[var(--ink)] hover:bg-[var(--ink)] hover:text-[var(--paper)] transition-colors">

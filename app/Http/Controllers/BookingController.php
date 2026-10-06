@@ -50,7 +50,9 @@ class BookingController extends Controller
                 ->first();
 
             if (!$room) {
-                throw new \Exception('No rooms available for the selected type.');
+                DB::rollBack();
+
+                return back()->withInput()->withErrors(['error' => 'Bu oda tipinde şu an boş oda bulunmuyor.']);
             }
 
             // Calculate total price
@@ -67,7 +69,7 @@ class BookingController extends Controller
                 'check_out' => $validated['check_out'],
                 'number_of_guests' => $validated['number_of_guests'],
                 'total_price' => $totalPrice,
-                'special_requests' => $validated['special_requests'],
+                'special_requests' => $validated['special_requests'] ?? null,
                 'status' => 'pending'
             ]);
 
@@ -78,12 +80,17 @@ class BookingController extends Controller
 
         } catch (\Exception $e) {
             DB::rollBack();
-            return back()->withInput()->withErrors(['error' => $e->getMessage()]);
+            // Log the details; showing raw exception text would leak internals to visitors
+            report($e);
+
+            return back()->withInput()->withErrors(['error' => 'Rezervasyon oluşturulamadı, lütfen tekrar deneyin.']);
         }
     }
 
     public function confirmation(Booking $booking)
     {
+        abort_unless($booking->customer_id === auth()->id() || auth()->user()->is_admin, 404);
+
         return view('bookings.confirmation', compact('booking'));
     }
 

@@ -68,7 +68,7 @@
     <!-- Contact Section -->
     <div class="py-20" style="background: var(--paper-deep);">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-12" data-aos="fade-up">
+            <div class="text-center mb-12">
                 <span class="type-stamp text-xs text-[var(--stone)]">— Let's Plan —</span>
                 <h2 class="text-3xl md:text-4xl font-bold mt-3 mb-4">Plan Your Event</h2>
                 <p class="text-[var(--stone)]">Contact us to organize your special event</p>

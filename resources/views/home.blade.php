@@ -36,7 +36,7 @@
         </div>
 
         <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-full flex items-center">
-            <div class="text-[var(--paper)] max-w-2xl" data-aos="fade-up">
+            <div class="text-[var(--paper)] max-w-2xl">
                 <span class="type-stamp inline-flex items-center gap-2 text-xs text-[var(--fern)] mb-5 border border-dashed border-[var(--fern)]/60 bg-black/25 px-3 py-1.5">
                     <i class="fas fa-leaf"></i> Est. deep in the wild
                 </span>
@@ -56,7 +56,7 @@
     <!-- Room Types Section with Slider -->
     <div id="room-types" class="py-20 relative overflow-hidden">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-16" data-aos="fade-up">
+            <div class="text-center mb-16">
                 <span class="type-stamp text-xs text-[var(--stone)]">— Field Notes, No. 01 —</span>
                 <h2 class="text-3xl md:text-4xl font-bold mt-3">Our Luxury Rooms</h2>
             </div>
@@ -152,31 +152,31 @@
     <!-- Features Section -->
     <div class="py-20 border-y-2 border-dashed border-[var(--paper-dark)]" style="background: var(--paper-deep);">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-14" data-aos="fade-up">
+            <div class="text-center mb-14">
                 <span class="type-stamp text-xs text-[var(--stone)]">— In Harmony With Nature —</span>
                 <h2 class="text-3xl md:text-4xl font-bold mt-3">Why Choose Us</h2>
             </div>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <div class="field-card text-center p-8" data-aos="fade-up" data-aos-delay="0">
-                    <div class="w-16 h-16 rounded-full border-2 border-dashed border-[var(--moss)] flex items-center justify-center mx-auto mb-5">
-                        <i class="fas fa-spa text-2xl text-[var(--moss)]"></i>
+            <div class="grid grid-cols-2 md:grid-cols-3 gap-4 sm:gap-8">
+                <div class="field-card text-center p-4 sm:p-8">
+                    <div class="w-12 h-12 sm:w-16 sm:h-16 rounded-full border-2 border-dashed border-[var(--moss)] flex items-center justify-center mx-auto mb-3 sm:mb-5">
+                        <i class="fas fa-spa text-lg sm:text-2xl text-[var(--moss)]"></i>
                     </div>
-                    <h3 class="text-xl font-bold mb-2">Luxury Service</h3>
-                    <p class="text-[var(--stone)]">Experience the finest amenities and services</p>
+                    <h3 class="text-base sm:text-xl font-bold mb-1 sm:mb-2">Luxury Service</h3>
+                    <p class="text-sm text-[var(--stone)]">Experience the finest amenities and services</p>
                 </div>
-                <div class="field-card text-center p-8" data-aos="fade-up" data-aos-delay="100">
-                    <div class="w-16 h-16 rounded-full border-2 border-dashed border-[var(--moss)] flex items-center justify-center mx-auto mb-5">
-                        <i class="fas fa-feather text-2xl text-[var(--moss)]"></i>
+                <div class="field-card text-center p-4 sm:p-8">
+                    <div class="w-12 h-12 sm:w-16 sm:h-16 rounded-full border-2 border-dashed border-[var(--moss)] flex items-center justify-center mx-auto mb-3 sm:mb-5">
+                        <i class="fas fa-feather text-lg sm:text-2xl text-[var(--moss)]"></i>
                     </div>
-                    <h3 class="text-xl font-bold mb-2">24/7 Service</h3>
-                    <p class="text-[var(--stone)]">Round-the-clock support for your needs</p>
+                    <h3 class="text-base sm:text-xl font-bold mb-1 sm:mb-2">24/7 Service</h3>
+                    <p class="text-sm text-[var(--stone)]">Round-the-clock support for your needs</p>
                 </div>
-                <div class="field-card text-center p-8" data-aos="fade-up" data-aos-delay="200">
-                    <div class="w-16 h-16 rounded-full border-2 border-dashed border-[var(--moss)] flex items-center justify-center mx-auto mb-5">
-                        <i class="fas fa-seedling text-2xl text-[var(--moss)]"></i>
+                <div class="field-card text-center p-4 sm:p-8 col-span-2 md:col-span-1">
+                    <div class="w-12 h-12 sm:w-16 sm:h-16 rounded-full border-2 border-dashed border-[var(--moss)] flex items-center justify-center mx-auto mb-3 sm:mb-5">
+                        <i class="fas fa-seedling text-lg sm:text-2xl text-[var(--moss)]"></i>
                     </div>
-                    <h3 class="text-xl font-bold mb-2">Best Rates</h3>
-                    <p class="text-[var(--stone)]">Competitive prices for luxury stays</p>
+                    <h3 class="text-base sm:text-xl font-bold mb-1 sm:mb-2">Best Rates</h3>
+                    <p class="text-sm text-[var(--stone)]">Competitive prices for luxury stays</p>
                 </div>
             </div>
         </div>
@@ -185,39 +185,39 @@
     <!-- Wildlife & Wonders -->
     <div class="py-20 relative overflow-hidden" style="background: var(--paper);">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-14" data-aos="fade-up">
+            <div class="text-center mb-14">
                 <span class="type-stamp text-xs text-[var(--stone)]">— Field Notes, No. 02 —</span>
                 <h2 class="text-3xl md:text-4xl font-bold mt-3">Wildlife &amp; Wonders</h2>
                 <p class="text-[var(--stone)] mt-3 max-w-xl mx-auto">Just beyond the veranda, the reserve keeps its own residents — here is what our guides most often spot on the trail.</p>
             </div>
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-8 gap-y-14">
-                <div class="field-card tilt-l text-center p-6">
-                    <div class="w-14 h-14 rounded-full border-2 border-dashed border-[var(--teal)] flex items-center justify-center mx-auto mb-4">
-                        <i class="fas fa-dove text-xl text-[var(--teal)]"></i>
+            <div class="grid grid-cols-2 lg:grid-cols-4 gap-x-4 sm:gap-x-8 gap-y-6 sm:gap-y-14">
+                <div class="field-card tilt-l text-center p-4 sm:p-6">
+                    <div class="w-10 h-10 sm:w-14 sm:h-14 rounded-full border-2 border-dashed border-[var(--teal)] flex items-center justify-center mx-auto mb-2 sm:mb-4">
+                        <i class="fas fa-dove text-base sm:text-xl text-[var(--teal)]"></i>
                     </div>
-                    <h3 class="font-bold mb-1">Toucans &amp; Songbirds</h3>
-                    <p class="text-sm text-[var(--stone)]">Dawn chorus starts at first light, right outside your window.</p>
+                    <h3 class="text-sm sm:text-base font-bold mb-1">Toucans &amp; Songbirds</h3>
+                    <p class="text-xs sm:text-sm text-[var(--stone)]">Dawn chorus starts at first light, right outside your window.</p>
                 </div>
-                <div class="field-card tilt-r text-center p-6">
-                    <div class="w-14 h-14 rounded-full border-2 border-dashed border-[var(--rust)] flex items-center justify-center mx-auto mb-4">
-                        <i class="fas fa-water text-xl text-[var(--rust)]"></i>
+                <div class="field-card tilt-r text-center p-4 sm:p-6">
+                    <div class="w-10 h-10 sm:w-14 sm:h-14 rounded-full border-2 border-dashed border-[var(--rust)] flex items-center justify-center mx-auto mb-2 sm:mb-4">
+                        <i class="fas fa-water text-base sm:text-xl text-[var(--rust)]"></i>
                     </div>
-                    <h3 class="font-bold mb-1">Hidden Waterfalls</h3>
-                    <p class="text-sm text-[var(--stone)]">A forty-minute trail leads to a curtain falls few tourists ever find.</p>
+                    <h3 class="text-sm sm:text-base font-bold mb-1">Hidden Waterfalls</h3>
+                    <p class="text-xs sm:text-sm text-[var(--stone)]">A forty-minute trail leads to a curtain falls few tourists ever find.</p>
                 </div>
-                <div class="field-card tilt-l text-center p-6">
-                    <div class="w-14 h-14 rounded-full border-2 border-dashed border-[var(--moss)] flex items-center justify-center mx-auto mb-4">
-                        <i class="fas fa-tree text-xl text-[var(--moss)]"></i>
+                <div class="field-card tilt-l text-center p-4 sm:p-6">
+                    <div class="w-10 h-10 sm:w-14 sm:h-14 rounded-full border-2 border-dashed border-[var(--moss)] flex items-center justify-center mx-auto mb-2 sm:mb-4">
+                        <i class="fas fa-tree text-base sm:text-xl text-[var(--moss)]"></i>
                     </div>
-                    <h3 class="font-bold mb-1">Canopy Walkways</h3>
-                    <p class="text-sm text-[var(--stone)]">Rope bridges strung 20 metres up, level with the treetop birds.</p>
+                    <h3 class="text-sm sm:text-base font-bold mb-1">Canopy Walkways</h3>
+                    <p class="text-xs sm:text-sm text-[var(--stone)]">Rope bridges strung 20 metres up, level with the treetop birds.</p>
                 </div>
-                <div class="field-card tilt-r text-center p-6">
-                    <div class="w-14 h-14 rounded-full border-2 border-dashed border-[var(--mustard)] flex items-center justify-center mx-auto mb-4">
-                        <i class="fas fa-moon text-xl text-[var(--mustard)]"></i>
+                <div class="field-card tilt-r text-center p-4 sm:p-6">
+                    <div class="w-10 h-10 sm:w-14 sm:h-14 rounded-full border-2 border-dashed border-[var(--mustard)] flex items-center justify-center mx-auto mb-2 sm:mb-4">
+                        <i class="fas fa-moon text-base sm:text-xl text-[var(--mustard)]"></i>
                     </div>
-                    <h3 class="font-bold mb-1">Night Safaris</h3>
-                    <p class="text-sm text-[var(--stone)]">Guided walks after dusk, when the fireflies and frogs take over.</p>
+                    <h3 class="text-sm sm:text-base font-bold mb-1">Night Safaris</h3>
+                    <p class="text-xs sm:text-sm text-[var(--stone)]">Guided walks after dusk, when the fireflies and frogs take over.</p>
                 </div>
             </div>
         </div>
@@ -226,32 +226,32 @@
     <!-- Contact Section -->
     <div class="py-20" style="background: var(--paper);">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-14" data-aos="fade-up">
+            <div class="text-center mb-14">
                 <span class="type-stamp text-xs text-[var(--stone)]">— Get In Touch —</span>
                 <h2 class="text-3xl md:text-4xl font-bold mt-3 mb-4">Need Help?</h2>
                 <p class="text-[var(--stone)]">Contact us for any questions or special requests</p>
             </div>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
-                <div class="field-card p-8">
-                    <div class="w-12 h-12 rounded-full border-2 border-dashed border-[var(--rust)] flex items-center justify-center mx-auto mb-4">
-                        <i class="fas fa-phone text-xl text-[var(--rust)]"></i>
+            <div class="grid grid-cols-2 md:grid-cols-3 gap-4 sm:gap-8 text-center">
+                <div class="field-card p-4 sm:p-8">
+                    <div class="w-10 h-10 sm:w-12 sm:h-12 rounded-full border-2 border-dashed border-[var(--rust)] flex items-center justify-center mx-auto mb-2 sm:mb-4">
+                        <i class="fas fa-phone text-base sm:text-xl text-[var(--rust)]"></i>
                     </div>
-                    <h3 class="text-lg font-semibold mb-2">Phone</h3>
-                    <p class="text-[var(--stone)]">+1 234 567 890</p>
+                    <h3 class="text-sm sm:text-lg font-semibold mb-1 sm:mb-2">Phone</h3>
+                    <p class="text-xs sm:text-base text-[var(--stone)]">+1 234 567 890</p>
                 </div>
-                <div class="field-card p-8">
-                    <div class="w-12 h-12 rounded-full border-2 border-dashed border-[var(--rust)] flex items-center justify-center mx-auto mb-4">
-                        <i class="fas fa-envelope text-xl text-[var(--rust)]"></i>
+                <div class="field-card p-4 sm:p-8">
+                    <div class="w-10 h-10 sm:w-12 sm:h-12 rounded-full border-2 border-dashed border-[var(--rust)] flex items-center justify-center mx-auto mb-2 sm:mb-4">
+                        <i class="fas fa-envelope text-base sm:text-xl text-[var(--rust)]"></i>
                     </div>
-                    <h3 class="text-lg font-semibold mb-2">Email</h3>
-                    <p class="text-[var(--stone)]">info@luxuryhotel.com</p>
+                    <h3 class="text-sm sm:text-lg font-semibold mb-1 sm:mb-2">Email</h3>
+                    <p class="text-xs sm:text-base text-[var(--stone)]">info@luxuryhotel.com</p>
                 </div>
-                <div class="field-card p-8">
-                    <div class="w-12 h-12 rounded-full border-2 border-dashed border-[var(--rust)] flex items-center justify-center mx-auto mb-4">
-                        <i class="fas fa-map-marker-alt text-xl text-[var(--rust)]"></i>
+                <div class="field-card p-4 sm:p-8 col-span-2 md:col-span-1">
+                    <div class="w-10 h-10 sm:w-12 sm:h-12 rounded-full border-2 border-dashed border-[var(--rust)] flex items-center justify-center mx-auto mb-2 sm:mb-4">
+                        <i class="fas fa-map-marker-alt text-base sm:text-xl text-[var(--rust)]"></i>
                     </div>
-                    <h3 class="text-lg font-semibold mb-2">Location</h3>
-                    <p class="text-[var(--stone)]">123 Luxury Street, City</p>
+                    <h3 class="text-sm sm:text-lg font-semibold mb-1 sm:mb-2">Location</h3>
+                    <p class="text-xs sm:text-base text-[var(--stone)]">123 Luxury Street, City</p>
                 </div>
             </div>
         </div>

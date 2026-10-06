@@ -9,10 +9,11 @@ class AdminMiddleware
 {
     public function handle(Request $request, Closure $next)
     {
-        if (!session('is_admin')) {
-            return redirect()->route('admin.login');
+        // Respond with 404 rather than a redirect so the panel's existence isn't revealed.
+        if (!$request->user() || !$request->user()->is_admin) {
+            abort(404);
         }
 
         return $next($request);
     }
-} 
+}

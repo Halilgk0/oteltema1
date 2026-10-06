@@ -90,7 +90,7 @@
     <!-- How Booking Works -->
     <div class="py-16 border-t-2 border-dashed border-[var(--paper-dark)]" style="background: var(--paper-deep);">
         <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-12" data-aos="fade-up">
+            <div class="text-center mb-12">
                 <span class="type-stamp text-xs text-[var(--stone)]">— How It Works —</span>
                 <h2 class="text-2xl md:text-3xl font-bold mt-3">From Trailhead to Room Key</h2>
             </div>

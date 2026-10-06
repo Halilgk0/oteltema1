@@ -8,48 +8,9 @@ use App\Models\Room;
 use App\Models\Booking;
 use App\Models\Amenity;
 use Illuminate\Support\Facades\Storage;
-use Illuminate\Support\Facades\Hash;
 
 class AdminController extends Controller
 {
-    private $adminPassword = 'admin123'; // Güvenlik için daha sonra .env'ye taşınabilir
-
-    public function showLogin()
-    {
-        if (session('is_admin')) {
-            return redirect()->route('admin.dashboard');
-        }
-        return view('admin.login');
-    }
-
-    public function login(Request $request)
-    {
-        $request->validate([
-            'password' => 'required'
-        ]);
-
-        if ($request->password === 'admin123') {
-            session(['is_admin' => true]);
-            return redirect()->route('admin.dashboard');
-        }
-
-        return back()->with('error', 'Şifre hatalı!');
-    }
-
-    public function dashboard()
-    {
-        $stats = [
-            'total_rooms' => RoomType::count(),
-            'total_bookings' => Booking::count(),
-            'recent_bookings' => Booking::with(['customer', 'room.roomType'])
-                ->orderBy('created_at', 'desc')
-                ->take(5)
-                ->get()
-        ];
-
-        return view('admin.dashboard', compact('stats'));
-    }
-
     public function rooms()
     {
         $roomTypes = RoomType::with(['amenities', 'rooms'])->get();
@@ -125,9 +86,7 @@ class AdminController extends Controller
 
         $roomType->update($validated);
 
-        if (isset($validated['amenities'])) {
-            $roomType->amenities()->sync($validated['amenities']);
-        }
+        $roomType->amenities()->sync($validated['amenities'] ?? []);
 
         return redirect()->route('admin.rooms')->with('success', 'Oda tipi başarıyla güncellendi.');
     }
@@ -226,18 +185,13 @@ class AdminController extends Controller
         return view('admin.events');
     }
 
-    public function logout()
-    {
-        session()->forget('is_admin');
-        auth()->logout();
-        return redirect()->route('home');
-    }
-
     public function index()
     {
         $stats = [
-            'total_rooms' => RoomType::count(),
+            'total_room_types' => RoomType::count(),
+            'total_rooms' => Room::count(),
             'total_bookings' => Booking::count(),
+            'pending_bookings' => Booking::where('status', 'pending')->count(),
             'recent_bookings' => Booking::with(['customer', 'room.roomType'])
                 ->orderBy('created_at', 'desc')
                 ->take(5)

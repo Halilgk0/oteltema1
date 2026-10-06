@@ -29,29 +29,27 @@ Route::get('/events', [EventController::class, 'index'])->name('events.index');
 
 // Auth Routes
 Route::get('/giris', [AuthController::class, 'showLogin'])->name('login');
-Route::post('/giris', [AuthController::class, 'login'])->name('login.post');
+// throttle:<name> limits are defined in RouteServiceProvider; extra requests get a 429 response.
+// Login also locks a single email after 5 wrong passwords (see AuthController::login).
+Route::post('/giris', [AuthController::class, 'login'])->middleware('throttle:login')->name('login.post');
 Route::get('/kayit', [AuthController::class, 'showRegister'])->name('register');
-Route::post('/kayit', [AuthController::class, 'register'])->name('register.post');
+Route::post('/kayit', [AuthController::class, 'register'])->middleware('throttle:register')->name('register.post');
 Route::post('/cikis', [AuthController::class, 'logout'])->name('logout');
 
 // Protected Routes
 Route::middleware(['auth'])->group(function () {
     Route::get('/book/{roomType}', [BookingController::class, 'create'])->name('bookings.create');
-    Route::post('/book/{roomType}', [BookingController::class, 'store'])->name('bookings.store');
+    Route::post('/book/{roomType}', [BookingController::class, 'store'])->middleware('throttle:bookings')->name('bookings.store');
     Route::get('/booking/confirmation/{booking}', [BookingController::class, 'confirmation'])->name('bookings.confirmation');
     Route::get('/profil', [AuthController::class, 'profile'])->name('profile');
+    Route::post('/profil/sifre', [AuthController::class, 'updatePassword'])->middleware('throttle:password')->name('profile.password');
     Route::get('/rezervasyonlarim', [AuthController::class, 'myBookings'])->name('my-bookings');
-    Route::post('/rezervasyonlarim/{booking}/iptal', [BookingController::class, 'cancel'])->name('bookings.cancel');
+    Route::post('/rezervasyonlarim/{booking}/iptal', [BookingController::class, 'cancel'])->middleware('throttle:bookings')->name('bookings.cancel');
 });
 
-// Admin Login Routes (Public)
-Route::get('/admin', [AdminController::class, 'showLogin'])->name('admin.index');
-Route::get('/admin/login', [AdminController::class, 'showLogin'])->name('admin.login');
-Route::post('/admin/login', [AdminController::class, 'login']);
-
-// Admin Protected Routes
+// Admin Routes — admins sign in through the regular login page; everyone else gets a 404.
 Route::middleware(['admin'])->prefix('admin')->name('admin.')->group(function () {
-    Route::post('/logout', [AdminController::class, 'logout'])->name('logout');
+    Route::redirect('/', '/admin/dashboard')->name('index');
     Route::get('/dashboard', [AdminController::class, 'index'])->name('dashboard');
     Route::get('/rooms', [AdminController::class, 'rooms'])->name('rooms');
     Route::get('/bookings', [AdminController::class, 'bookings'])->name('bookings');

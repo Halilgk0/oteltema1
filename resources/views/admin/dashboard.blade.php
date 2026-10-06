@@ -1,87 +1,82 @@
 @extends('admin.layout')
 
-@section('title', 'Dashboard')
+@section('title', 'Genel Bakış')
+
+@section('actions')
+    <a href="{{ route('admin.room-types.create') }}" class="btn-ticket-outline !py-2 !px-4 !text-[11px]">
+        <i class="fas fa-plus"></i> Oda Tipi
+    </a>
+    <a href="{{ route('admin.rooms.create') }}" class="btn-ticket !py-2 !px-4 !text-[11px]">
+        <i class="fas fa-plus"></i> Oda
+    </a>
+@endsection
 
 @section('content')
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
-        <div class="bg-white rounded-lg shadow-md p-6">
-            <div class="flex items-center">
-                <div class="p-3 rounded-full bg-blue-500 bg-opacity-10">
-                    <i class="fas fa-bed text-2xl text-blue-500"></i>
-                </div>
-                <div class="ml-4">
-                    <h3 class="text-gray-500 text-sm">Toplam Oda Tipi</h3>
-                    <p class="text-2xl font-semibold">{{ $stats['total_rooms'] }}</p>
+    <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 mb-10">
+        @php
+            $cards = [
+                ['label' => 'Oda Tipi', 'value' => $stats['total_room_types'], 'icon' => 'fa-leaf', 'color' => 'var(--moss)'],
+                ['label' => 'Oda', 'value' => $stats['total_rooms'], 'icon' => 'fa-bed', 'color' => 'var(--teal)'],
+                ['label' => 'Rezervasyon', 'value' => $stats['total_bookings'], 'icon' => 'fa-book-open', 'color' => 'var(--rust)'],
+                ['label' => 'Bekleyen', 'value' => $stats['pending_bookings'], 'icon' => 'fa-hourglass-half', 'color' => 'var(--mustard)'],
+            ];
+        @endphp
+        @foreach($cards as $card)
+            <div class="field-card {{ $loop->even ? 'tilt-r' : 'tilt-l' }} p-4 sm:p-6">
+                <div class="flex items-center gap-3 sm:gap-4">
+                    <div class="w-11 h-11 sm:w-14 sm:h-14 flex-shrink-0 rounded-full border-2 border-dashed flex items-center justify-center"
+                         style="border-color: {{ $card['color'] }};">
+                        <i class="fas {{ $card['icon'] }} text-base sm:text-xl" style="color: {{ $card['color'] }};"></i>
+                    </div>
+                    <div>
+                        <div class="text-2xl sm:text-3xl font-bold" style="font-family:'Playfair Display',serif;">{{ $card['value'] }}</div>
+                        <div class="type-stamp text-[10px] text-[var(--stone)]">{{ $card['label'] }}</div>
+                    </div>
                 </div>
             </div>
-        </div>
-        
-        <div class="bg-white rounded-lg shadow-md p-6">
-            <div class="flex items-center">
-                <div class="p-3 rounded-full bg-green-500 bg-opacity-10">
-                    <i class="fas fa-calendar-check text-2xl text-green-500"></i>
-                </div>
-                <div class="ml-4">
-                    <h3 class="text-gray-500 text-sm">Toplam Rezervasyon</h3>
-                    <p class="text-2xl font-semibold">{{ $stats['total_bookings'] }}</p>
-                </div>
-            </div>
-        </div>
+        @endforeach
     </div>
 
-    <div class="bg-white rounded-lg shadow-md">
-        <div class="p-6 border-b">
-            <h2 class="text-lg font-semibold">Son Rezervasyonlar</h2>
+    <div class="field-card">
+        <div class="p-5 sm:p-6 flex items-center justify-between gap-4 border-b-2 border-dashed border-[var(--paper-dark)]">
+            <h2 class="text-lg font-bold">Son Rezervasyonlar</h2>
+            <a href="{{ route('admin.bookings') }}" class="type-stamp text-xs text-[var(--ink)] hover:text-[var(--rust)] transition-colors whitespace-nowrap">
+                Tümü <i class="fas fa-arrow-right text-[10px]"></i>
+            </a>
         </div>
-        <div class="p-6">
-            <div class="overflow-x-auto">
-                <table class="w-full">
-                    <thead>
-                        <tr class="text-left bg-gray-50">
-                            <th class="px-6 py-3 text-xs font-medium text-gray-500 uppercase tracking-wider">Müşteri</th>
-                            <th class="px-6 py-3 text-xs font-medium text-gray-500 uppercase tracking-wider">Oda</th>
-                            <th class="px-6 py-3 text-xs font-medium text-gray-500 uppercase tracking-wider">Giriş</th>
-                            <th class="px-6 py-3 text-xs font-medium text-gray-500 uppercase tracking-wider">Çıkış</th>
-                            <th class="px-6 py-3 text-xs font-medium text-gray-500 uppercase tracking-wider">Durum</th>
+        <div class="overflow-x-auto">
+            <table class="adm-table w-full text-sm">
+                <thead>
+                    <tr>
+                        <th>Misafir</th>
+                        <th>Oda</th>
+                        <th>Giriş</th>
+                        <th>Çıkış</th>
+                        <th>Durum</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @forelse($stats['recent_bookings'] as $booking)
+                        <tr>
+                            <td>
+                                <div class="font-semibold">{{ $booking->customer->name }}</div>
+                                <div class="text-xs text-[var(--stone)]">{{ $booking->customer->email }}</div>
+                            </td>
+                            <td>
+                                <div>{{ $booking->room->roomType->name }}</div>
+                                <div class="text-xs text-[var(--stone)]">Oda {{ $booking->room->room_number }}</div>
+                            </td>
+                            <td class="whitespace-nowrap">{{ $booking->check_in->format('d.m.Y') }}</td>
+                            <td class="whitespace-nowrap">{{ $booking->check_out->format('d.m.Y') }}</td>
+                            <td>@include('admin.partials.status', ['status' => $booking->status])</td>
                         </tr>
-                    </thead>
-                    <tbody class="divide-y divide-gray-200">
-                        @forelse($stats['recent_bookings'] as $booking)
-                            <tr>
-                                <td class="px-6 py-4">
-                                    <div class="text-sm font-medium text-gray-900">{{ $booking->customer->name }}</div>
-                                    <div class="text-sm text-gray-500">{{ $booking->customer->email }}</div>
-                                </td>
-                                <td class="px-6 py-4">
-                                    <div class="text-sm text-gray-900">{{ $booking->room->roomType->name }}</div>
-                                    <div class="text-sm text-gray-500">Oda {{ $booking->room->room_number }}</div>
-                                </td>
-                                <td class="px-6 py-4 text-sm text-gray-500">
-                                    {{ $booking->check_in->format('d.m.Y') }}
-                                </td>
-                                <td class="px-6 py-4 text-sm text-gray-500">
-                                    {{ $booking->check_out->format('d.m.Y') }}
-                                </td>
-                                <td class="px-6 py-4">
-                                    <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full 
-                                        @if($booking->status === 'confirmed') bg-green-100 text-green-800
-                                        @elseif($booking->status === 'pending') bg-yellow-100 text-yellow-800
-                                        @elseif($booking->status === 'cancelled') bg-red-100 text-red-800
-                                        @endif">
-                                        {{ ucfirst($booking->status) }}
-                                    </span>
-                                </td>
-                            </tr>
-                        @empty
-                            <tr>
-                                <td colspan="5" class="px-6 py-4 text-center text-gray-500">
-                                    Henüz rezervasyon bulunmuyor.
-                                </td>
-                            </tr>
-                        @endforelse
-                    </tbody>
-                </table>
-            </div>
+                    @empty
+                        <tr>
+                            <td colspan="5" class="text-center text-[var(--stone)] py-10">Henüz rezervasyon bulunmuyor.</td>
+                        </tr>
+                    @endforelse
+                </tbody>
+            </table>
         </div>
     </div>
-@endsection 
+@endsection

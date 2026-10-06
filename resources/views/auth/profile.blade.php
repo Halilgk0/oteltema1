@@ -5,7 +5,7 @@
 @section('content')
 <div class="py-16">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center mb-12" data-aos="fade-up">
+        <div class="text-center mb-12">
             <span class="type-stamp text-xs text-[var(--stone)]">— Guest Log —</span>
             <h1 class="text-3xl md:text-4xl font-bold mt-3">Profilim</h1>
         </div>
@@ -59,6 +59,59 @@
                         <a href="{{ route('my-bookings') }}" class="btn-ticket w-full !py-3 mt-6">
                             Rezervasyonlarım
                         </a>
+                    </div>
+                </div>
+
+                <!-- Şifre Değiştir -->
+                <div class="field-card mt-8" x-data="{ open: {{ $errors->password->any() ? 'true' : 'false' }}, show: false }">
+                    <div class="p-6">
+                        <button type="button" @click="open = !open"
+                                class="w-full flex items-center justify-between gap-3 text-left"
+                                :aria-expanded="open.toString()">
+                            <span class="type-stamp text-xs text-[var(--stone)]">— Şifre Değiştir —</span>
+                            <i class="fas fa-chevron-down text-[var(--stone)] transition-transform" :class="open && 'rotate-180'"></i>
+                        </button>
+
+                        <form x-show="open" x-cloak action="{{ route('profile.password') }}" method="POST" class="mt-5 space-y-4">
+                            @csrf
+
+                            @if($errors->password->any())
+                                <div class="border-2 border-dashed border-[var(--rust)] bg-[var(--paper-deep)] text-[var(--rust)] px-3 py-2 text-xs space-y-1">
+                                    @foreach($errors->password->all() as $error)
+                                        <p><i class="fas fa-triangle-exclamation mr-1"></i>{{ $error }}</p>
+                                    @endforeach
+                                </div>
+                            @endif
+
+                            <div>
+                                <label for="current_password" class="type-stamp text-[9px] text-[var(--stone)] block mb-2">Mevcut Şifre</label>
+                                <input :type="show ? 'text' : 'password'" id="current_password" name="current_password" required autocomplete="current-password"
+                                       class="w-full px-3 py-2.5 text-sm border-2 border-[var(--ink)] bg-[var(--paper)] focus:outline-none focus:border-[var(--rust)] transition-colors">
+                            </div>
+                            <div>
+                                <label for="new_password" class="type-stamp text-[9px] text-[var(--stone)] block mb-2">Yeni Şifre</label>
+                                <input :type="show ? 'text' : 'password'" id="new_password" name="password" required minlength="8" autocomplete="new-password"
+                                       class="w-full px-3 py-2.5 text-sm border-2 border-[var(--ink)] bg-[var(--paper)] focus:outline-none focus:border-[var(--rust)] transition-colors">
+                            </div>
+                            <div>
+                                <label for="new_password_confirmation" class="type-stamp text-[9px] text-[var(--stone)] block mb-2">Yeni Şifre (Tekrar)</label>
+                                <input :type="show ? 'text' : 'password'" id="new_password_confirmation" name="password_confirmation" required minlength="8" autocomplete="new-password"
+                                       class="w-full px-3 py-2.5 text-sm border-2 border-[var(--ink)] bg-[var(--paper)] focus:outline-none focus:border-[var(--rust)] transition-colors">
+                            </div>
+
+                            <label class="flex items-center gap-2 cursor-pointer select-none">
+                                <input type="checkbox" x-model="show" class="w-4 h-4 accent-[var(--rust)]">
+                                <span class="text-xs text-[var(--stone)]">Şifreleri göster</span>
+                            </label>
+
+                            <p class="text-[11px] text-[var(--stone)] leading-relaxed">
+                                Şifreniz değişince diğer cihazlardaki oturumlarınız kapanır.
+                            </p>
+
+                            <button type="submit" class="btn-ticket w-full !py-3">
+                                <i class="fas fa-key mr-1"></i> Şifreyi Güncelle
+                            </button>
+                        </form>
                     </div>
                 </div>
             </div>

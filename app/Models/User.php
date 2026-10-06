@@ -15,6 +15,9 @@ class User extends Authenticatable
     /**
      * The attributes that are mass assignable.
      *
+     * is_admin is deliberately left out so a forged form field can never
+     * promote an account; set it explicitly (e.g. forceFill) instead.
+     *
      * @var array<int, string>
      */
     protected $fillable = [
@@ -22,7 +25,6 @@ class User extends Authenticatable
         'email',
         'password',
         'phone',
-        'is_admin',
     ];
 
     /**

@@ -5,7 +5,7 @@
 @section('content')
     <div class="py-16">
         <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-10" data-aos="fade-up">
+            <div class="text-center mb-10">
                 <span class="type-stamp text-xs text-[var(--stone)]">— Reservation —</span>
                 <h1 class="text-3xl md:text-4xl font-bold mt-3">Book {{ $roomType->name }}</h1>
             </div>
