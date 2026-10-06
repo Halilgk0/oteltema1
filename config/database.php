@@ -19,6 +19,20 @@ return [
 
     /*
     |--------------------------------------------------------------------------
+    | Automatic Setup
+    |--------------------------------------------------------------------------
+    |
+    | When enabled, the first web request handled by a server instance runs the
+    | migrations and, if the database has no users yet, the seeders. Used by
+    | the Vercel demo, whose SQLite file starts empty on every new instance.
+    | See App\Providers\AppServiceProvider::setUpDatabaseOnce().
+    |
+    */
+
+    'auto_setup' => env('DB_AUTO_SETUP', false),
+
+    /*
+    |--------------------------------------------------------------------------
     | Database Connections
     |--------------------------------------------------------------------------
     |

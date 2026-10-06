@@ -15,6 +15,11 @@ $app = new Illuminate\Foundation\Application(
     $_ENV['APP_BASE_PATH'] ?? dirname(__DIR__)
 );
 
+// Serverless hosts (Vercel) only allow writes to a temp dir; api/index.php sets this.
+if (!empty($_ENV['APP_STORAGE_PATH'])) {
+    $app->useStoragePath($_ENV['APP_STORAGE_PATH']);
+}
+
 /*
 |--------------------------------------------------------------------------
 | Bind Important Interfaces
